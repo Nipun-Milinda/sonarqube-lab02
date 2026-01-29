@@ -13,7 +13,7 @@ public class UserService {
     // VULNERABILITY: SQL Injection
     public void findUser(String username) throws SQLException {
 
-        String query = "SELECT * FROM users WHERE name = ?";
+        String query = "SELECT id, name, email FROM users WHERE name = ?";
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/db", "root", password);
              PreparedStatement st = conn.prepareStatement(query)) {
 
