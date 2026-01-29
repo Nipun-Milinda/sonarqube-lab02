@@ -1,6 +1,7 @@
 package main.java.com.example;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class App {
@@ -8,7 +9,7 @@ public class App {
 
     public static void main(String[] args) throws SQLException {
         Calculator calc = new Calculator();
-        logger.info(String.valueOf(calc.calculate(10, 5, "add-again")));
+        logger.log(Level.INFO, () -> String.valueOf(calc.calculate(10, 5, "add-again")));
         UserService service = new UserService();
         service.findUser("admin");
         service.deleteUser("admin"); // NEW dangerous call
