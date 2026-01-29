@@ -13,8 +13,7 @@ public class UserService {
     public void findUser(String username) throws Exception {
 
         Connection conn =
-            DriverManager.getConnection("jdbc:mysql://localhost/db",
-                    "root", password);
+            DriverManager.getConnection("jdbc:mysql://localhost/db", "root", password);
 
         Statement st = conn.createStatement();
 
@@ -22,6 +21,14 @@ public class UserService {
             "SELECT * FROM users WHERE name = '" + username + "'";
 
         st.executeQuery(query);
+    }
+
+    // EVEN WORSE: another SQL injection
+    public void deleteUser(String username) throws Exception {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/db", "root", password);
+        Statement st = conn.createStatement();
+        String query = "DELETE FROM users WHERE name = '" + username + "'";
+        st.execute(query);
     }
 
     // SMELL: Unused method
